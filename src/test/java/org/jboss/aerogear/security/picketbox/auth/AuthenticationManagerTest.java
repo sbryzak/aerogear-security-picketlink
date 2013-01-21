@@ -48,7 +48,7 @@ public class AuthenticationManagerTest {
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        when(aeroGearUser.getId()).thenReturn("john");
+        when(aeroGearUser.getUsername()).thenReturn("john");
         when(aeroGearUser.getPassword()).thenReturn("123");
     }
 

@@ -24,10 +24,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.picketlink.idm.IdentityManager;
-import org.picketlink.idm.model.SimpleUser;
 import org.picketlink.idm.model.User;
-
-import static org.mockito.Mockito.when;
 
 public class GrantConfigurationTest {
 
@@ -48,7 +45,7 @@ public class GrantConfigurationTest {
 
     private AeroGearUser buildUser(String username) {
         AeroGearUser aeroGearUser = new AeroGearUser();
-        aeroGearUser.setId(username);
+        aeroGearUser.setUsername(username);
         aeroGearUser.setEmail(username + "@doe.com");
         aeroGearUser.setPassword("123");
         return aeroGearUser;
