@@ -19,17 +19,14 @@ package org.jboss.aerogear.security.picketbox.authz;
 
 import org.jboss.aerogear.security.authz.IdentityManagement;
 import org.jboss.aerogear.security.model.AeroGearUser;
-import org.picketbox.core.authentication.credential.UsernamePasswordCredential;
 import org.picketlink.idm.IdentityManager;
 import org.picketlink.idm.credential.PlainTextPassword;
 import org.picketlink.idm.model.Role;
 import org.picketlink.idm.model.SimpleRole;
-import org.picketlink.idm.model.SimpleUser;
 import org.picketlink.idm.model.User;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.resource.spi.security.PasswordCredential;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,7 +66,7 @@ public class GrantConfiguration implements IdentityManagement.GrantMethods {
     @Override
     public void to(AeroGearUser aeroGearUser) {
 
-        User picketLinkUser = identityManager.getUser(aeroGearUser.getId());
+        User picketLinkUser = identityManager.getUser(aeroGearUser.getUsername());
 
         /*
          * Disclaimer: PlainTextPassword will encode passwords in SHA-512 with SecureRandom-1024 salt

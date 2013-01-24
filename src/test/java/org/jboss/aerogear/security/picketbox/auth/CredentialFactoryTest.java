@@ -42,7 +42,7 @@ public class CredentialFactoryTest {
 
     private AeroGearUser buildUser(String username, String password) {
         AeroGearUser aeroGearUser = new AeroGearUser();
-        aeroGearUser.setId(username);
+        aeroGearUser.setUsername(username);
         aeroGearUser.setPassword(password);
         aeroGearUser.setEmail(username + "@doe.com");
         return aeroGearUser;

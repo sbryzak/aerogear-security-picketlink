@@ -66,7 +66,7 @@ public class IdentityManagementTest {
 
     private AeroGearUser buildUser(String username){
         AeroGearUser aeroGearUser = new AeroGearUser();
-        aeroGearUser.setId(username);
+        aeroGearUser.setUsername(username);
         aeroGearUser.setEmail(username + "@doe.com");
         aeroGearUser.setPassword("123");
         return aeroGearUser;

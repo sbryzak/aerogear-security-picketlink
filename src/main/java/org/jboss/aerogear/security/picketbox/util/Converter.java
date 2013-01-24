@@ -23,7 +23,7 @@ public class Converter {
 
     public static AeroGearUser convertToAerogearUser(User user){
         AeroGearUser aeroGearUser = new AeroGearUser();
-        aeroGearUser.setId(user.getId());
+        aeroGearUser.setUsername(user.getId());
         aeroGearUser.setEmail(user.getEmail());
         aeroGearUser.setFirstName(user.getFirstName());
         aeroGearUser.setLastName(user.getLastName());

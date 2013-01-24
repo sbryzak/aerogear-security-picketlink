@@ -64,7 +64,7 @@ public class IdentityManagementImpl implements IdentityManagement {
 
     @Override
     public void remove(AeroGearUser aeroGearUser) {
-       identityManager.remove(identityManager.getUser(aeroGearUser.getId()));
+       identityManager.remove(identityManager.getUser(aeroGearUser.getUsername()));
     }
 
     @Override
@@ -85,7 +85,7 @@ public class IdentityManagementImpl implements IdentityManagement {
      */
     @Override
     public void create(AeroGearUser aeroGearUser) {
-        User picketLinkUser = new SimpleUser(aeroGearUser.getId());
+        User picketLinkUser = new SimpleUser(aeroGearUser.getUsername());
         picketLinkUser.setEmail(aeroGearUser.getEmail());
         picketLinkUser.setFirstName(aeroGearUser.getFirstName());
         picketLinkUser.setLastName(aeroGearUser.getLastName());
