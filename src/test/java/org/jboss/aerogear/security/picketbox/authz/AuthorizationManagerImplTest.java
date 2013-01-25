@@ -23,8 +23,8 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.picketbox.cdi.PicketBoxIdentity;
 import org.picketlink.authentication.AuthenticationException;
+import org.picketlink.extensions.core.pbox.PicketBoxIdentity;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;

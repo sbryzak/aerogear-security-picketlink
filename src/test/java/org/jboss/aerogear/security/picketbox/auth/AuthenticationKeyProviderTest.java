@@ -18,7 +18,6 @@
 package org.jboss.aerogear.security.picketbox.auth;
 
 import org.jboss.aerogear.security.idm.AuthenticationKeyProvider;
-import org.jboss.aerogear.security.otp.api.Base32;
 import org.jboss.aerogear.security.picketbox.idm.AuthenticationKeyProviderImpl;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -26,10 +25,10 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.picketbox.cdi.PicketBoxIdentity;
 import org.picketbox.core.UserContext;
 import org.picketbox.core.session.PicketBoxSession;
 import org.picketbox.core.session.SessionId;
+import org.picketlink.extensions.core.pbox.PicketBoxIdentity;
 import org.picketlink.idm.IdentityManager;
 import org.picketlink.idm.model.Attribute;
 import org.picketlink.idm.model.User;

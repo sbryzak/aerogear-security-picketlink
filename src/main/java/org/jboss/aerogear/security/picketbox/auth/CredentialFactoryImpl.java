@@ -19,8 +19,8 @@ package org.jboss.aerogear.security.picketbox.auth;
 
 import org.jboss.aerogear.security.auth.CredentialFactory;
 import org.jboss.aerogear.security.model.AeroGearUser;
-import org.picketbox.cdi.LoginCredential;
 import org.picketbox.core.authentication.credential.UsernamePasswordCredential;
+import org.picketlink.extensions.core.pbox.LoginCredential;
 
 
 import javax.inject.Inject;

@@ -32,9 +32,7 @@ import org.picketlink.idm.query.internal.DefaultIdentityQuery;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-
 import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.when;
 
@@ -54,17 +52,19 @@ public class IdentityManagementTest {
 
     @Before
     public void setUp() throws Exception {
+        List<User> list = new ArrayList<User>();
+        list.add(new SimpleUser("john"));
+
         identityManagement = new IdentityManagementImpl();
         MockitoAnnotations.initMocks(this);
         when(identityManager.getUser(("john"))).thenReturn(new SimpleUser("john"));
         when(identityManager.getUser(("mike"))).thenReturn(null);
-        List<User> list = new ArrayList<User>();
-        list.add(new SimpleUser("john"));
-        when(identityManager.createQuery(User.class)).thenReturn(defaultIdentityQuery);
+
+        when(identityManager.createIdentityQuery(User.class)).thenReturn(defaultIdentityQuery);
         when(defaultIdentityQuery.getResultList()).thenReturn(list);
     }
 
-    private AeroGearUser buildUser(String username){
+    private AeroGearUser buildUser(String username) {
         AeroGearUser aeroGearUser = new AeroGearUser();
         aeroGearUser.setUsername(username);
         aeroGearUser.setEmail(username + "@doe.com");
@@ -82,16 +82,16 @@ public class IdentityManagementTest {
 
     @Test
     public void testCreate() throws Exception {
-        AeroGearUser user = buildUser("john") ;
+        AeroGearUser user = buildUser("john");
         identityManagement.create(user);
         User picketLinkUser = identityManager.getUser("john");
-        assertNotNull(picketLinkUser);
+        assertNotNull("User should exist", picketLinkUser);
     }
 
     @Test
     public void testGet() throws Exception {
         AeroGearUser aeroGearUser = identityManagement.get("john");
-        assertNotNull(aeroGearUser);
+        assertNotNull("User should exist", aeroGearUser);
     }
 
     @Test(expected = RuntimeException.class)
@@ -99,12 +99,13 @@ public class IdentityManagementTest {
         AeroGearUser user = buildUser("mike");
         identityManagement.remove(user);
         AeroGearUser removedUser = identityManagement.get("mike");
+        assertNull("User should not exist", removedUser);
     }
 
     @Test
     public void testFindUserByRole() throws Exception {
         List<AeroGearUser> list = identityManagement.findAllByRole("simple");
-        assertEquals(1,list.size());
+        assertNotNull("User should be found by role", list.get(0));
     }
 
 }

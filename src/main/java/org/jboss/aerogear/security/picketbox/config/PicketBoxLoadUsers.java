@@ -17,9 +17,9 @@
 
 package org.jboss.aerogear.security.picketbox.config;
 
-import org.picketbox.core.identity.impl.JPAIdentityStoreContext;
+import org.picketbox.core.identity.jpa.EntityManagerPropagationContext;
 import org.picketlink.idm.IdentityManager;
-import org.picketlink.idm.credential.PlainTextPassword;
+import org.picketlink.idm.credential.internal.Password;
 import org.picketlink.idm.model.Role;
 import org.picketlink.idm.model.SimpleRole;
 import org.picketlink.idm.model.SimpleUser;
@@ -50,7 +50,8 @@ public class PicketBoxLoadUsers {
     //TODO this entire initialization code will be removed
     @PostConstruct
     public void create() {
-        JPAIdentityStoreContext.set(this.entityManager);
+
+        EntityManagerPropagationContext.set(entityManager);
 
         User user = new SimpleUser("john");
 
@@ -59,11 +60,11 @@ public class PicketBoxLoadUsers {
         user.setLastName("Doe");
 
         /*
-         * Disclaimer: PlainTextPassword will encode passwords in SHA-512 with SecureRandom-1024 salt
+         * Note: Password will be encoded in SHA-512 with SecureRandom-1024 salt
          * See http://lists.jboss.org/pipermail/security-dev/2013-January/000650.html for more information
          */
         this.identityManager.add(user);
-        this.identityManager.updateCredential(user, new PlainTextPassword("123"));
+        this.identityManager.updateCredential(user, new Password("123"));
 
         Role roleDeveloper = new SimpleRole("simple");
         Role roleAdmin = new SimpleRole("admin");
@@ -74,7 +75,7 @@ public class PicketBoxLoadUsers {
         identityManager.grantRole(user, roleDeveloper);
         identityManager.grantRole(user, roleAdmin);
 
-        JPAIdentityStoreContext.clear();
+        EntityManagerPropagationContext.clear();
     }
 
 }

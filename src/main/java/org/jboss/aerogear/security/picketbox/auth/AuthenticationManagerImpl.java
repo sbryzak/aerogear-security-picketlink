@@ -22,7 +22,7 @@ import org.jboss.aerogear.security.auth.CredentialFactory;
 import org.jboss.aerogear.security.exception.AeroGearSecurityException;
 import org.jboss.aerogear.security.exception.HttpStatus;
 import org.jboss.aerogear.security.model.AeroGearUser;
-import org.picketbox.cdi.PicketBoxIdentity;
+import org.picketlink.extensions.core.pbox.PicketBoxIdentity;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;

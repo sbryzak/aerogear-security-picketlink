@@ -45,6 +45,7 @@ public class IdentityManagementImpl implements IdentityManagement {
 
     /**
      * This method allows to specify which <i>roles</i> must be assigned to {@link org.jboss.aerogear.security.model.AeroGearUser}
+     *
      * @param roles The list of roles.
      * @return {@link GrantMethods} is a builder which a allows to apply a list of roles to the specified {@link org.jboss.aerogear.security.model.AeroGearUser}.
      */
@@ -54,26 +55,26 @@ public class IdentityManagementImpl implements IdentityManagement {
     }
 
     @Override
-    public AeroGearUser get(String id) throws RuntimeException{
+    public AeroGearUser get(String id) throws RuntimeException {
         User user = identityManager.getUser(id);
-        if(user == null){
-          throw new RuntimeException("User do not exist");
+        if (user == null) {
+            throw new RuntimeException("User do not exist");
         }
         return Converter.convertToAerogearUser(identityManager.getUser(id));
     }
 
     @Override
     public void remove(AeroGearUser aeroGearUser) {
-       identityManager.remove(identityManager.getUser(aeroGearUser.getUsername()));
+        identityManager.remove(identityManager.getUser(aeroGearUser.getUsername()));
     }
 
     @Override
     public List<AeroGearUser> findAllByRole(String role) {
         List aerogearUsers = new ArrayList();
-        IdentityQuery<User> query = identityManager.createQuery(User.class);
-        query.setParameter(User.HAS_ROLE, new String[] {role});
+        IdentityQuery<User> query = identityManager.createIdentityQuery(User.class);
+        query.setParameter(User.HAS_ROLE, new String[]{role});
         List<User> result = query.getResultList();
-        for(User user:result){
+        for (User user : result) {
             aerogearUsers.add(Converter.convertToAerogearUser(user));
         }
         return aerogearUsers;
@@ -81,6 +82,7 @@ public class IdentityManagementImpl implements IdentityManagement {
 
     /**
      * This method creates a new {@link AeroGearUser}
+     *
      * @param aeroGearUser
      */
     @Override
