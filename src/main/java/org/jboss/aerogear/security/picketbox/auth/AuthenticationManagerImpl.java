@@ -70,12 +70,4 @@ public class AuthenticationManagerImpl implements AuthenticationManager {
             throw new AeroGearSecurityException(HttpStatus.AUTHENTICATION_FAILED);
     }
 
-    /* (non-Javadoc)
-     * @see org.jboss.aerogear.security.auth.AuthenticationManager#isSubjectLoggedIn()
-     */
-    @Override
-    public boolean isSubjectLoggedIn() {
-        return identity.isLoggedIn();
-    }
-
 }
