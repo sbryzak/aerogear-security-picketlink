@@ -70,7 +70,7 @@
         <javaee6.bom.version>1.0.0.Final</javaee6.bom.version>
 
         <!-- Define the version of PicketBox APIs we want to import -->
-        <picketlink.extensions.version>3.0.0-2013Jan24</picketlink.extensions.version>
+        <picketlink.extensions.version>3.0.0-2013Feb01</picketlink.extensions.version>
 
         <!-- Define the version of AeroGear APIs we want to import -->
         <aerogear.controller.version>1.0.0.CR1-SNAPSHOT</aerogear.controller.version>
