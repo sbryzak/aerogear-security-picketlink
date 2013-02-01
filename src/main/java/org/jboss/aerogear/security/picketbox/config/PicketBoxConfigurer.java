@@ -17,8 +17,8 @@
 
 package org.jboss.aerogear.security.picketbox.config;
 
-import org.picketbox.cdi.idm.DefaultJPATemplate;
 import org.picketbox.core.config.ConfigurationBuilder;
+import org.picketbox.core.identity.jpa.EntityManagerLookupStrategy;
 
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
@@ -28,7 +28,7 @@ public class PicketBoxConfigurer {
     private static final int TIMEOUT_IN_MINUTES = 30;
 
     @Inject
-    private DefaultJPATemplate jpaTemplate;
+    private EntityManagerLookupStrategy entityManagerLookupStrategy;
 
     @Produces
     public ConfigurationBuilder produceConfiguration() {
@@ -38,7 +38,7 @@ public class PicketBoxConfigurer {
 
         builder
                 .identityManager()
-                .jpaStore().template(this.jpaTemplate);
+                .jpaStore().entityManagerLookupStrategy(this.entityManagerLookupStrategy);
 
         builder
                 .sessionManager()

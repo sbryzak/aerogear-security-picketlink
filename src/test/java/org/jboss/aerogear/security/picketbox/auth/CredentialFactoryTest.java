@@ -24,7 +24,7 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.picketbox.cdi.LoginCredential;
+import org.picketlink.extensions.core.pbox.LoginCredential;
 
 public class CredentialFactoryTest {
 

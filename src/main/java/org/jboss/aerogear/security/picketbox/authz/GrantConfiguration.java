@@ -20,7 +20,7 @@ package org.jboss.aerogear.security.picketbox.authz;
 import org.jboss.aerogear.security.authz.IdentityManagement;
 import org.jboss.aerogear.security.model.AeroGearUser;
 import org.picketlink.idm.IdentityManager;
-import org.picketlink.idm.credential.PlainTextPassword;
+import org.picketlink.idm.credential.internal.Password;
 import org.picketlink.idm.model.Role;
 import org.picketlink.idm.model.SimpleRole;
 import org.picketlink.idm.model.User;
@@ -43,6 +43,7 @@ public class GrantConfiguration implements IdentityManagement.GrantMethods {
 
     /**
      * This method specifies which roles will be applied to {@link AeroGearUser}
+     *
      * @param roles Array of roles
      * @return builder implementation
      */
@@ -50,7 +51,7 @@ public class GrantConfiguration implements IdentityManagement.GrantMethods {
         list = new ArrayList<Role>();
         for (String role : roles) {
             Role newRole = identityManager.getRole(role);
-            if(newRole == null){
+            if (newRole == null) {
                 newRole = new SimpleRole(role);
                 identityManager.add(newRole);
             }
@@ -61,6 +62,7 @@ public class GrantConfiguration implements IdentityManagement.GrantMethods {
 
     /**
      * This method applies roles specified on {@link IdentityManagement#grant(String...)}
+     *
      * @param aeroGearUser represents a simple user's implementation to hold credentials.
      */
     @Override
@@ -72,7 +74,7 @@ public class GrantConfiguration implements IdentityManagement.GrantMethods {
          * Disclaimer: PlainTextPassword will encode passwords in SHA-512 with SecureRandom-1024 salt
          * See http://lists.jboss.org/pipermail/security-dev/2013-January/000650.html for more information
          */
-        identityManager.updateCredential(picketLinkUser, new PlainTextPassword(aeroGearUser.getPassword()));
+        identityManager.updateCredential(picketLinkUser, new Password(aeroGearUser.getPassword()));
 
         for (Role role : list) {
             identityManager.grantRole(picketLinkUser, role);

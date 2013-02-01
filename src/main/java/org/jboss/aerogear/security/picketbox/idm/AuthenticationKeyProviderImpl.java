@@ -21,7 +21,7 @@ import org.jboss.aerogear.security.auth.Secret;
 import org.jboss.aerogear.security.auth.Token;
 import org.jboss.aerogear.security.idm.AuthenticationKeyProvider;
 import org.jboss.aerogear.security.otp.api.Base32;
-import org.picketbox.cdi.PicketBoxIdentity;
+import org.picketlink.extensions.core.pbox.PicketBoxIdentity;
 import org.picketlink.idm.IdentityManager;
 import org.picketlink.idm.model.Attribute;
 import org.picketlink.idm.model.User;
@@ -67,7 +67,7 @@ public class AuthenticationKeyProviderImpl implements AuthenticationKeyProvider 
         Attribute<String> secret = user.getAttribute(IDM_SECRET_ATTRIBUTE);
 
         if (secret == null) {
-            secret = new Attribute<String>(IDM_SECRET_ATTRIBUTE,  Base32.random());
+            secret = new Attribute<String>(IDM_SECRET_ATTRIBUTE, Base32.random());
             user.setAttribute(secret);
             this.identityManager.update(user);
         }

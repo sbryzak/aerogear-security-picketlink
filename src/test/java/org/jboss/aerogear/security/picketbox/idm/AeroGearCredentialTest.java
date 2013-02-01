@@ -17,14 +17,13 @@
 
 package org.jboss.aerogear.security.picketbox.idm;
 
-import org.jboss.aerogear.security.idm.AeroGearCredential;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.picketbox.cdi.PicketBoxIdentity;
 import org.picketbox.core.UserContext;
+import org.picketlink.extensions.core.pbox.PicketBoxIdentity;
 
 import java.util.Arrays;
 import java.util.Collection;

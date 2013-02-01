@@ -19,7 +19,7 @@ package org.jboss.aerogear.security.picketbox.idm;
 
 import org.jboss.aerogear.security.auth.LoggedUser;
 import org.jboss.aerogear.security.idm.AeroGearCredential;
-import org.picketbox.cdi.PicketBoxIdentity;
+import org.picketlink.extensions.core.pbox.PicketBoxIdentity;
 
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
@@ -48,6 +48,7 @@ public class AeroGearCredentialImpl implements AeroGearCredential {
 
     /**
      * Role validation against the IDM
+     *
      * @param roles roles to be checked
      * @return returns true if the current logged in has roles at the IDM, false otherwise
      */
