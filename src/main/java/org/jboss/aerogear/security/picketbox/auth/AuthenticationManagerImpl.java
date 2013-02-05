@@ -22,7 +22,7 @@ import org.jboss.aerogear.security.auth.CredentialFactory;
 import org.jboss.aerogear.security.exception.AeroGearSecurityException;
 import org.jboss.aerogear.security.exception.HttpStatus;
 import org.jboss.aerogear.security.model.AeroGearUser;
-import org.picketlink.extensions.core.pbox.PicketBoxIdentity;
+import org.picketlink.internal.DefaultIdentity;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -34,15 +34,17 @@ import javax.inject.Inject;
 public class AuthenticationManagerImpl implements AuthenticationManager {
 
     @Inject
-    private PicketBoxIdentity identity;
+    private DefaultIdentity identity;
 
     @Inject
     private CredentialFactory credentialFactory;
 
     /**
      * Logs in the specified {@link AeroGearUser}.
+     *
      * @param aeroGearUser represents a simple implementation that holds user's credentials.
-     * @throws org.jboss.aerogear.security.exception.AeroGearSecurityException on login failure.
+     * @throws org.jboss.aerogear.security.exception.AeroGearSecurityException
+     *          on login failure.
      */
     public void login(AeroGearUser aeroGearUser) {
 
@@ -56,7 +58,9 @@ public class AuthenticationManagerImpl implements AuthenticationManager {
 
     /**
      * Logs out the specified {@link AeroGearUser} from the system.
-     * @throws org.jboss.aerogear.security.exception.AeroGearSecurityException on logout failure.
+     *
+     * @throws org.jboss.aerogear.security.exception.AeroGearSecurityException
+     *          on logout failure.
      */
     public void logout() {
         onAuthenticationFailure();

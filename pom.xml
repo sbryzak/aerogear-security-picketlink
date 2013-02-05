@@ -70,7 +70,7 @@
         <javaee6.bom.version>1.0.0.Final</javaee6.bom.version>
 
         <!-- Define the version of PicketBox APIs we want to import -->
-        <picketlink.extensions.version>3.0.0-2013Feb01</picketlink.extensions.version>
+        <picketlink.version>3.0.0-2013Feb01</picketlink.version>
 
         <!-- Define the version of AeroGear APIs we want to import -->
         <aerogear.controller.version>1.0.0.CR1-SNAPSHOT</aerogear.controller.version>
@@ -218,9 +218,29 @@
         </dependency>
 
         <dependency>
-            <groupId>org.picketlink.extensions</groupId>
-            <artifactId>picketlink-extensions-core</artifactId>
-            <version>${picketlink.extensions.version}</version>
+            <groupId>org.picketlink</groupId>
+            <artifactId>picketlink-core-api</artifactId>
+            <version>${picketlink.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.picketlink</groupId>
+            <artifactId>picketlink-core-impl</artifactId>
+            <version>${picketlink.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.picketlink</groupId>
+            <artifactId>picketlink-idm-api</artifactId>
+            <version>${picketlink.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.picketlink</groupId>
+            <artifactId>picketlink-idm-impl</artifactId>
+            <version>${picketlink.version}</version>
         </dependency>
 
         <dependency>

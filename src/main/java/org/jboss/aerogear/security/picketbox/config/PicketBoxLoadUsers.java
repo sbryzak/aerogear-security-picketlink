@@ -17,7 +17,6 @@
 
 package org.jboss.aerogear.security.picketbox.config;
 
-import org.picketbox.core.identity.jpa.EntityManagerPropagationContext;
 import org.picketlink.idm.IdentityManager;
 import org.picketlink.idm.credential.internal.Password;
 import org.picketlink.idm.model.Role;
@@ -51,8 +50,6 @@ public class PicketBoxLoadUsers {
     @PostConstruct
     public void create() {
 
-        EntityManagerPropagationContext.set(entityManager);
-
         User user = new SimpleUser("john");
 
         user.setEmail("john@doe.com");
@@ -75,7 +72,6 @@ public class PicketBoxLoadUsers {
         identityManager.grantRole(user, roleDeveloper);
         identityManager.grantRole(user, roleAdmin);
 
-        EntityManagerPropagationContext.clear();
     }
 
 }
