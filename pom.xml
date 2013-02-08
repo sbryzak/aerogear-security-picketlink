@@ -22,11 +22,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.jboss.aerogear</groupId>
-    <artifactId>aerogear-security-picketbox</artifactId>
+    <artifactId>aerogear-security-picketlink</artifactId>
     <version>1.0.0.CR1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>aerogear-security-picketbox</name>
+    <name>aerogear-security-picketlink</name>
     <url>http://aerogear.org</url>
 
     <parent>
@@ -53,9 +53,9 @@
     </developers>
 
     <scm>
-        <connection>scm:git:git@github.com:aerogear/aerogear-security-picketbox.git</connection>
-        <developerConnection>scm:git:git@github.com:aerogear/aerogear-security-picketbox.git</developerConnection>
-        <url>git@github.com:aerogear/aerogear-security-picketbox.git</url>
+        <connection>scm:git:git@github.com:aerogear/aerogear-security-picketlink.git</connection>
+        <developerConnection>scm:git:git@github.com:aerogear/aerogear-security-picketlink.git</developerConnection>
+        <url>git@github.com:aerogear/aerogear-security-picketlink.git</url>
     </scm>
 
     <properties>
@@ -69,7 +69,7 @@
              version defined by this BOM -->
         <javaee6.bom.version>1.0.0.Final</javaee6.bom.version>
 
-        <!-- Define the version of PicketBox APIs we want to import -->
+        <!-- Define the version of picketlink APIs we want to import -->
         <picketlink.version>3.0.0-SNAPSHOT</picketlink.version>
 
         <!-- Define the version of AeroGear APIs we want to import -->
