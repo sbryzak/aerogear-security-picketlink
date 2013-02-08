@@ -15,13 +15,13 @@
  * limitations under the License.
  */
 
-package org.jboss.aerogear.security.picketbox.auth;
+package org.jboss.aerogear.security.picketlink.auth;
 
 import org.jboss.aerogear.security.auth.CredentialFactory;
 import org.jboss.aerogear.security.model.AeroGearUser;
-import org.picketbox.core.authentication.credential.UsernamePasswordCredential;
-import org.picketlink.extensions.core.pbox.LoginCredential;
-
+import org.picketlink.credential.internal.DefaultLoginCredentials;
+import org.picketlink.idm.credential.internal.Password;
+import org.picketlink.idm.credential.internal.UsernamePasswordCredentials;
 
 import javax.inject.Inject;
 
@@ -31,14 +31,16 @@ import javax.inject.Inject;
 public class CredentialFactoryImpl implements CredentialFactory {
 
     @Inject
-    private LoginCredential loginCredentials;
+    private DefaultLoginCredentials credentials;
 
     /**
      * Sets the identity required on authentication provider.
+     *
      * @param aeroGearUser represents a simple implementation that holds user's credentials.
      */
     @Override
     public void setCredential(AeroGearUser aeroGearUser) {
-        loginCredentials.setCredential(new UsernamePasswordCredential(aeroGearUser.getUsername(), aeroGearUser.getPassword()));
+        credentials.setUserId(aeroGearUser.getUsername());
+        credentials.setCredential(new Password(aeroGearUser.getPassword()));
     }
 }

@@ -15,10 +15,11 @@
  * limitations under the License.
  */
 
-package org.jboss.aerogear.security.picketbox.authz;
+package org.jboss.aerogear.security.picketlink.authz;
 
 import org.jboss.aerogear.security.authz.IdentityManagement;
 import org.jboss.aerogear.security.model.AeroGearUser;
+import org.jboss.aerogear.security.picketlink.spi.AeroGear;
 import org.picketlink.idm.IdentityManager;
 import org.picketlink.idm.credential.internal.Password;
 import org.picketlink.idm.model.Role;
@@ -36,7 +37,7 @@ import java.util.List;
 @ApplicationScoped
 public class GrantConfiguration implements IdentityManagement.GrantMethods {
 
-    @Inject
+    @Inject @AeroGear
     private IdentityManager identityManager;
 
     private List<Role> list;

@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-package org.jboss.aerogear.security.picketbox.config;
+package org.jboss.aerogear.security.picketlink.config;
 
-import org.picketbox.core.identity.jpa.EntityManagerPropagationContext;
+import org.jboss.aerogear.security.picketlink.spi.AeroGear;
 import org.picketlink.idm.IdentityManager;
 import org.picketlink.idm.credential.internal.Password;
 import org.picketlink.idm.model.Role;
@@ -29,19 +29,14 @@ import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
 
 @Singleton
 @Startup
-public class PicketBoxLoadUsers {
+public class PicketLinkLoadUsers {
 
-
-    @PersistenceContext(unitName = "picketbox-default", type = PersistenceContextType.EXTENDED)
-    private EntityManager entityManager;
 
     @Inject
+    @AeroGear
     private IdentityManager identityManager;
 
     /**
@@ -50,8 +45,6 @@ public class PicketBoxLoadUsers {
     //TODO this entire initialization code will be removed
     @PostConstruct
     public void create() {
-
-        EntityManagerPropagationContext.set(entityManager);
 
         User user = new SimpleUser("john");
 
@@ -75,7 +68,6 @@ public class PicketBoxLoadUsers {
         identityManager.grantRole(user, roleDeveloper);
         identityManager.grantRole(user, roleAdmin);
 
-        EntityManagerPropagationContext.clear();
     }
 
 }

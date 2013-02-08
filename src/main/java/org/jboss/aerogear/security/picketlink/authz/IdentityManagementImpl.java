@@ -15,12 +15,13 @@
  * limitations under the License.
  */
 
-package org.jboss.aerogear.security.picketbox.authz;
+package org.jboss.aerogear.security.picketlink.authz;
 
 
 import org.jboss.aerogear.security.authz.IdentityManagement;
 import org.jboss.aerogear.security.model.AeroGearUser;
-import org.jboss.aerogear.security.picketbox.util.Converter;
+import org.jboss.aerogear.security.picketlink.spi.AeroGear;
+import org.jboss.aerogear.security.picketlink.util.Converter;
 import org.picketlink.idm.IdentityManager;
 import org.picketlink.idm.model.SimpleUser;
 import org.picketlink.idm.model.User;
@@ -37,7 +38,7 @@ import java.util.List;
 @ApplicationScoped
 public class IdentityManagementImpl implements IdentityManagement {
 
-    @Inject
+    @Inject @AeroGear
     private IdentityManager identityManager;
 
     @Inject

@@ -15,11 +15,13 @@
  * limitations under the License.
  */
 
-package org.jboss.aerogear.security.picketbox.idm;
+package org.jboss.aerogear.security.picketlink.idm;
 
 import org.jboss.aerogear.security.auth.LoggedUser;
 import org.jboss.aerogear.security.idm.AeroGearCredential;
-import org.picketlink.extensions.core.pbox.PicketBoxIdentity;
+import org.jboss.aerogear.security.picketlink.spi.AeroGear;
+import org.picketlink.Identity;
+import org.picketlink.idm.IdentityManager;
 
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
@@ -31,7 +33,10 @@ import java.util.Set;
 public class AeroGearCredentialImpl implements AeroGearCredential {
 
     @Inject
-    private PicketBoxIdentity identity;
+    private Identity identity;
+
+    @Inject @AeroGear
+    private IdentityManager identityManager;
 
     /**
      * Represents the current {@link org.jboss.aerogear.security.model.AeroGearUser} logged in.
@@ -41,7 +46,7 @@ public class AeroGearCredentialImpl implements AeroGearCredential {
     public String getId() {
         String id = null;
         if (identity.isLoggedIn()) {
-            id = identity.getUserContext().getUser().getId();
+            id = identity.getUser().getId();
         }
         return id;
     }
@@ -58,7 +63,7 @@ public class AeroGearCredentialImpl implements AeroGearCredential {
         boolean hasRoles = false;
 
         if (identity.isLoggedIn()) {
-            hasRoles = identity.getUserContext().getRoleNames().containsAll(roles);
+//            hasRoles = identity.getUserContext().getRoleNames().containsAll(roles);
         }
 
         return hasRoles;

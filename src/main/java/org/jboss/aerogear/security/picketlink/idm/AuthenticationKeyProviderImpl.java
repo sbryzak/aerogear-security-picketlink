@@ -15,13 +15,13 @@
  * limitations under the License.
  */
 
-package org.jboss.aerogear.security.picketbox.idm;
+package org.jboss.aerogear.security.picketlink.idm;
 
 import org.jboss.aerogear.security.auth.Secret;
-import org.jboss.aerogear.security.auth.Token;
 import org.jboss.aerogear.security.idm.AuthenticationKeyProvider;
 import org.jboss.aerogear.security.otp.api.Base32;
-import org.picketlink.extensions.core.pbox.PicketBoxIdentity;
+import org.jboss.aerogear.security.picketlink.spi.AeroGear;
+import org.picketlink.Identity;
 import org.picketlink.idm.IdentityManager;
 import org.picketlink.idm.model.Attribute;
 import org.picketlink.idm.model.User;
@@ -37,23 +37,10 @@ public class AuthenticationKeyProviderImpl implements AuthenticationKeyProvider 
     private static final String IDM_SECRET_ATTRIBUTE = "serial";
 
     @Inject
-    private PicketBoxIdentity identity;
+    private Identity identity;
 
-    @Inject
+    @Inject @AeroGear
     private IdentityManager identityManager;
-
-    /**
-     * Represents the generated token for the current {@link org.jboss.aerogear.security.model.AeroGearUser} logged in.
-     */
-    @Produces
-    @Token
-    public String getToken() {
-        String id = null;
-        if (identity.isLoggedIn()) {
-            id = identity.getUserContext().getSession().getId().getId().toString();
-        }
-        return id;
-    }
 
     /**
      * Represents the generated secret for the current {@link org.jboss.aerogear.security.model.AeroGearUser} logged in.
@@ -62,7 +49,7 @@ public class AuthenticationKeyProviderImpl implements AuthenticationKeyProvider 
     @Secret
     public String getSecret() {
 
-        User user = identity.getUserContext().getUser();
+        User user = identity.getUser();
 
         Attribute<String> secret = user.getAttribute(IDM_SECRET_ATTRIBUTE);
 
