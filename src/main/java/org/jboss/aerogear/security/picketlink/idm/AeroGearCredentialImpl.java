@@ -15,12 +15,13 @@
  * limitations under the License.
  */
 
-package org.jboss.aerogear.security.picketbox.idm;
+package org.jboss.aerogear.security.picketlink.idm;
 
 import org.jboss.aerogear.security.auth.LoggedUser;
 import org.jboss.aerogear.security.idm.AeroGearCredential;
-import org.picketlink.idm.internal.DefaultIdentityManager;
-import org.picketlink.internal.DefaultIdentity;
+import org.jboss.aerogear.security.picketlink.spi.AeroGear;
+import org.picketlink.Identity;
+import org.picketlink.idm.IdentityManager;
 
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
@@ -32,10 +33,10 @@ import java.util.Set;
 public class AeroGearCredentialImpl implements AeroGearCredential {
 
     @Inject
-    private DefaultIdentity identity;
+    private Identity identity;
 
-    @Inject
-    private DefaultIdentityManager identityManager;
+    @Inject @AeroGear
+    private IdentityManager identityManager;
 
     /**
      * Represents the current {@link org.jboss.aerogear.security.model.AeroGearUser} logged in.

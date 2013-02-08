@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.aerogear.security.picketbox.util;
+package org.jboss.aerogear.security.picketlink.util;
 
 import org.jboss.aerogear.security.model.AeroGearUser;
 import org.picketlink.idm.model.User;

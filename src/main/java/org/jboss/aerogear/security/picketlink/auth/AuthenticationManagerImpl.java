@@ -15,14 +15,14 @@
  * limitations under the License.
  */
 
-package org.jboss.aerogear.security.picketbox.auth;
+package org.jboss.aerogear.security.picketlink.auth;
 
 import org.jboss.aerogear.security.auth.AuthenticationManager;
 import org.jboss.aerogear.security.auth.CredentialFactory;
 import org.jboss.aerogear.security.exception.AeroGearSecurityException;
 import org.jboss.aerogear.security.exception.HttpStatus;
 import org.jboss.aerogear.security.model.AeroGearUser;
-import org.picketlink.internal.DefaultIdentity;
+import org.picketlink.Identity;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -34,7 +34,7 @@ import javax.inject.Inject;
 public class AuthenticationManagerImpl implements AuthenticationManager {
 
     @Inject
-    private DefaultIdentity identity;
+    private Identity identity;
 
     @Inject
     private CredentialFactory credentialFactory;
@@ -50,10 +50,11 @@ public class AuthenticationManagerImpl implements AuthenticationManager {
 
         credentialFactory.setCredential(aeroGearUser);
 
-        identity.login();
-
-        onAuthenticationFailure();
-
+        if (Identity.AuthenticationResult.SUCCESS == identity.login()) {
+            System.out.println("User logged in");
+        } else {
+            throw new AeroGearSecurityException(HttpStatus.AUTHENTICATION_FAILED);
+        }
     }
 
     /**

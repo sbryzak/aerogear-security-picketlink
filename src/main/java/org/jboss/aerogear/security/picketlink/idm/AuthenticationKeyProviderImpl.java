@@ -15,17 +15,16 @@
  * limitations under the License.
  */
 
-package org.jboss.aerogear.security.picketbox.idm;
+package org.jboss.aerogear.security.picketlink.idm;
 
 import org.jboss.aerogear.security.auth.Secret;
-import org.jboss.aerogear.security.auth.Token;
 import org.jboss.aerogear.security.idm.AuthenticationKeyProvider;
 import org.jboss.aerogear.security.otp.api.Base32;
+import org.jboss.aerogear.security.picketlink.spi.AeroGear;
+import org.picketlink.Identity;
 import org.picketlink.idm.IdentityManager;
-import org.picketlink.idm.internal.DefaultIdentityManager;
 import org.picketlink.idm.model.Attribute;
 import org.picketlink.idm.model.User;
-import org.picketlink.internal.DefaultIdentity;
 
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
@@ -38,10 +37,10 @@ public class AuthenticationKeyProviderImpl implements AuthenticationKeyProvider 
     private static final String IDM_SECRET_ATTRIBUTE = "serial";
 
     @Inject
-    private DefaultIdentity identity;
+    private Identity identity;
 
-    @Inject
-    private DefaultIdentityManager identityManager;
+    @Inject @AeroGear
+    private IdentityManager identityManager;
 
     /**
      * Represents the generated secret for the current {@link org.jboss.aerogear.security.model.AeroGearUser} logged in.
